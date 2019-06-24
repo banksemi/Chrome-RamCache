@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -57,22 +57,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Temporary folder setting";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(124, 27);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(359, 21);
-            this.textBox1.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 12);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Select New folder";
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(489, 27);
@@ -83,6 +67,22 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(13, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(105, 12);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Select New folder";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(124, 27);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(359, 21);
+            this.textBox1.TabIndex = 0;
+            // 
             // listView1
             // 
             this.listView1.HideSelection = false;
@@ -91,6 +91,9 @@
             this.listView1.Size = new System.Drawing.Size(263, 125);
             this.listView1.TabIndex = 3;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.List;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.ListView1_SelectedIndexChanged);
+            this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListView1_MouseDoubleClick);
             // 
             // label2
             // 
@@ -114,16 +117,33 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Scheduler";
             // 
-            // groupBox3
+            // button4
             // 
-            this.groupBox3.Controls.Add(this.listView1);
-            this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Location = new System.Drawing.Point(12, 89);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(294, 188);
-            this.groupBox3.TabIndex = 5;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Chrome";
+            this.button4.Location = new System.Drawing.Point(6, 139);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(258, 31);
+            this.button4.TabIndex = 3;
+            this.button4.Text = "Run (Immediately)";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.Button4_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(6, 102);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(258, 31);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "Deregister";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(6, 65);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(258, 31);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Register";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -136,33 +156,16 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "State (Running)";
             // 
-            // button2
+            // groupBox3
             // 
-            this.button2.Location = new System.Drawing.Point(6, 65);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(258, 31);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Register";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(6, 102);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(258, 31);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Deregister";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(6, 139);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(258, 31);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Run (Immediately)";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.Button4_Click);
+            this.groupBox3.Controls.Add(this.listView1);
+            this.groupBox3.Controls.Add(this.label2);
+            this.groupBox3.Location = new System.Drawing.Point(12, 89);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(294, 188);
+            this.groupBox3.TabIndex = 5;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Chrome";
             // 
             // Form1
             // 

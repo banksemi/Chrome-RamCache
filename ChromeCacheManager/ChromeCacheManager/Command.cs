@@ -34,5 +34,9 @@ namespace ChromeCacheManager
             process.Close();
             return result;
         }
+        public static void Start(string path)
+        {
+            Process.Start(path);
+        }
     }
 }
