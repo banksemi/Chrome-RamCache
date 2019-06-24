@@ -22,6 +22,8 @@ namespace ChromeCacheManager
             Config config = new Config();
             if (config.Contains("path"))
                 textBox1.Text = config.Values["path"];
+
+            StateUpdate();
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -50,6 +52,35 @@ namespace ChromeCacheManager
         private void ListView1_MouseDoubleClick(object sender, MouseEventArgs e)
         { 
             Command.Start(listView1.SelectedItems[0].Text);
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            CacheManagement.AddScheduler();
+            StateUpdate();
+        }
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            CacheManagement.RemoveScheduler();
+            StateUpdate();
+        }
+        public void StateUpdate()
+        {
+            string text = null;
+            if (CacheManagement.Registered)
+            {
+                text = "Registered";
+                button2.Enabled = false;
+                button3.Enabled = true;
+            }
+            else
+            {
+                text = "Unregistered";
+                button2.Enabled = true;
+                button3.Enabled = false;
+            }
+
+            label3.Text = "State (" + text + ")";
         }
     }
 }
