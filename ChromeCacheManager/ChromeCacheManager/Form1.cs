@@ -16,5 +16,15 @@ namespace ChromeCacheManager
         {
             InitializeComponent();
         }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            CacheManagement.Start();
+        }
     }
 }
