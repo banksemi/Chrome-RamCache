@@ -19,11 +19,22 @@ namespace ChromeCacheManager
             {
                 listView1.Items.Add(path);
             }
+            Config config = new Config();
+            if (config.Contains("path"))
+                textBox1.Text = config.Values["path"];
         }
 
         private void Button1_Click(object sender, EventArgs e)
         {
-
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.ShowDialog();
+            if (!string.IsNullOrEmpty(dialog.SelectedPath))
+            {
+                Config config = new Config();
+                config.Values["path"] = dialog.SelectedPath + @"\";
+                config.Save();
+                textBox1.Text = config.Values["path"];
+            }
         }
 
         private void Button4_Click(object sender, EventArgs e)
