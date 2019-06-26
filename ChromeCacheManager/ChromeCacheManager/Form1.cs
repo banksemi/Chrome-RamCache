@@ -42,6 +42,19 @@ namespace ChromeCacheManager
         private void Button4_Click(object sender, EventArgs e)
         {
             CacheManagement.Start();
+
+            string message = "Temporary folder is changed.\n\n" +
+                "But the temporary folder will be deleted when you restart.\n" +
+                "So, we recommend scheduler registration that works automatically at system startup.\n\n" +
+                "Would you like to register?";
+            if (CacheManagement.Registered == false)
+            {
+                if (MessageBox.Show(message, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    CacheManagement.AddScheduler();
+                    StateUpdate();
+                }
+            }
         }
 
         private void ListView1_SelectedIndexChanged(object sender, EventArgs e)
