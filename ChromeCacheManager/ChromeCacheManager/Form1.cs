@@ -47,11 +47,11 @@ namespace ChromeCacheManager
                 "But the temporary folder will be deleted when you restart.\n" +
                 "So, we recommend scheduler registration that works automatically at system startup.\n\n" +
                 "Would you like to register?";
-            if (CacheManagement.Registered == false)
+            if (CacheManagement.Scheduler.isRegistered == false)
             {
                 if (MessageBox.Show(message, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
-                    CacheManagement.AddScheduler();
+                    CacheManagement.Scheduler.Register();
                     StateUpdate();
                 }
             }
@@ -69,18 +69,18 @@ namespace ChromeCacheManager
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            CacheManagement.AddScheduler();
+            CacheManagement.Scheduler.Register();
             StateUpdate();
         }
         private void Button3_Click(object sender, EventArgs e)
         {
-            CacheManagement.RemoveScheduler();
+            CacheManagement.Scheduler.Deregister();
             StateUpdate();
         }
         public void StateUpdate()
         {
             string text = null;
-            if (CacheManagement.Registered)
+            if (CacheManagement.Scheduler.isRegistered)
             {
                 text = "Registered";
                 button2.Enabled = false;
