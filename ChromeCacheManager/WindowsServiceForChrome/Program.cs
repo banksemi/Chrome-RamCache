@@ -16,31 +16,12 @@ namespace WindowsServiceForChrome
         /// </summary>
         static void Main(string[] args)
         {
-            if (args.Length == 0)
+            ServiceBase[] ServicesToRun;
+            ServicesToRun = new ServiceBase[]
             {
-                ServiceBase[] ServicesToRun;
-                ServicesToRun = new ServiceBase[]
-                {
                 new Service1()
-                };
-                ServiceBase.Run(ServicesToRun);
-            }
-            else if (args.Length == 1)
-            {
-                switch (args[0])
-                {
-                    case "-install":
-                        //InstallService();
-                        //StartService();
-                        break;
-                    case "-uninstall":
-                       // StopService();
-                        //UninstallService();
-                        break;
-                    default:
-                        throw new NotImplementedException();
-                }
-            }
+            };
+            ServiceBase.Run(ServicesToRun);
         }
     }
 }

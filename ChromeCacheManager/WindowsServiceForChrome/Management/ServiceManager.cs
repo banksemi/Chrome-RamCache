@@ -14,8 +14,7 @@ namespace WindowsServiceForChrome.Management
     {
         public static bool IsInstalled()
         {
-            using (ServiceController controller =
-                new ServiceController("YourServiceName"))
+            using (ServiceController controller = new ServiceController("YourServiceName"))
             {
                 try
                 {
@@ -31,18 +30,16 @@ namespace WindowsServiceForChrome.Management
 
         public static bool IsRunning()
         {
-            using (ServiceController controller =
-                new ServiceController("YourServiceName"))
+            using (ServiceController controller = new ServiceController("YourServiceName"))
             {
                 if (!IsInstalled()) return false;
                 return (controller.Status == ServiceControllerStatus.Running);
             }
         }
 
-        public static AssemblyInstaller GetInstaller()
+        private static AssemblyInstaller GetInstaller()
         {
-            AssemblyInstaller installer = new AssemblyInstaller(
-                typeof(ProjectInstaller).Assembly, null);
+            AssemblyInstaller installer = new AssemblyInstaller(typeof(ProjectInstaller).Assembly, null);
             installer.UseNewContext = true;
             return installer;
         }
@@ -105,8 +102,7 @@ namespace WindowsServiceForChrome.Management
         public static void StartService()
         {
             if (!IsInstalled()) return;
-            using (ServiceController controller =
-                new ServiceController("YourServiceName"))
+            using (ServiceController controller = new ServiceController("YourServiceName"))
             {
                 try
                 {
@@ -127,8 +123,7 @@ namespace WindowsServiceForChrome.Management
         public static void StopService()
         {
             if (!IsInstalled()) return;
-            using (ServiceController controller =
-                new ServiceController("YourServiceName"))
+            using (ServiceController controller = new ServiceController("YourServiceName"))
             {
                 try
                 {
