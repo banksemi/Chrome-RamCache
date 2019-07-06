@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ChromeCacheManager.SchedulerModule;
+using CacheManagementModule;
+
 namespace ChromeCacheManager
 {
     public partial class Form1 : Form
@@ -16,7 +18,6 @@ namespace ChromeCacheManager
         public Form1()
         {
             InitializeComponent();
-            CacheManagement.InitialSetting();
 
             foreach (string path in CacheManagement.FindChromeFolder())
             {
@@ -35,10 +36,9 @@ namespace ChromeCacheManager
             dialog.ShowDialog();
             if (!string.IsNullOrEmpty(dialog.SelectedPath))
             {
-                Config config = new Config();
-                config.Values["path"] = dialog.SelectedPath + @"\";
-                config.Save();
-                textBox1.Text = config.Values["path"];
+                string path = dialog.SelectedPath + @"\";
+                CacheManagement.InitialSetting(path);
+                textBox1.Text = path;
             }
         }
 

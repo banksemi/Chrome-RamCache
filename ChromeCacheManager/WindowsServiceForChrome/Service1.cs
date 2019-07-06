@@ -8,7 +8,7 @@ using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
-using ChromeCacheManager;
+using CacheManagementModule;
 namespace WindowsServiceForChrome
 {
     public partial class Service1 : ServiceBase

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Diagnostics;
 
-namespace ChromeCacheManager
+namespace CacheManagementModule
 {
     public static class Command
     {

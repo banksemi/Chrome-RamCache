@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-namespace ChromeCacheManager
+namespace CacheManagementModule
 {
     public static class CacheManagement
     {
@@ -58,10 +58,11 @@ namespace ChromeCacheManager
                 StartTemp(path);
             }
         }
-        public static void InitialSetting()
+        public static void InitialSetting(string RamDiskFolder)
         {
             Config config = new Config();
             config.Values["LocalFolder"] = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            config.Values["path"] = RamDiskFolder;
             config.Save();
         }
     }
