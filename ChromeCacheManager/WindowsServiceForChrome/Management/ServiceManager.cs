@@ -12,9 +12,10 @@ namespace WindowsServiceForChrome.Management
 {
     public static class ServiceManager
     {
+        public const string ServiceName = "ChromeTempService";
         public static bool IsInstalled()
         {
-            using (ServiceController controller = new ServiceController("YourServiceName"))
+            using (ServiceController controller = new ServiceController(ServiceName))
             {
                 try
                 {
@@ -30,7 +31,7 @@ namespace WindowsServiceForChrome.Management
 
         public static bool IsRunning()
         {
-            using (ServiceController controller = new ServiceController("YourServiceName"))
+            using (ServiceController controller = new ServiceController(ServiceName))
             {
                 if (!IsInstalled()) return false;
                 return (controller.Status == ServiceControllerStatus.Running);
@@ -102,7 +103,7 @@ namespace WindowsServiceForChrome.Management
         public static void StartService()
         {
             if (!IsInstalled()) return;
-            using (ServiceController controller = new ServiceController("YourServiceName"))
+            using (ServiceController controller = new ServiceController(ServiceName))
             {
                 try
                 {
@@ -123,7 +124,7 @@ namespace WindowsServiceForChrome.Management
         public static void StopService()
         {
             if (!IsInstalled()) return;
-            using (ServiceController controller = new ServiceController("YourServiceName"))
+            using (ServiceController controller = new ServiceController(ServiceName))
             {
                 try
                 {

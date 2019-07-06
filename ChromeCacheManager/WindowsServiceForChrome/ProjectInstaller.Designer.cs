@@ -39,8 +39,10 @@
             // 
             // serviceInstaller1
             // 
-            this.serviceInstaller1.DisplayName = "표시 이름";
-            this.serviceInstaller1.ServiceName = "YourServiceName";
+            this.serviceInstaller1.Description = "This service changes the location of the temporary folder at boot time. This requ" +
+    "ires a ramdisk program.";
+            this.serviceInstaller1.DisplayName = "Chrome Temp Folder Setting";
+            this.serviceInstaller1.ServiceName = "ChromeTempService";
             this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             // 
             // ProjectInstaller
