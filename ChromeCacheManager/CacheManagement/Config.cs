@@ -14,7 +14,7 @@ namespace ChromeCacheManager
         public Dictionary<string, string> Values = new Dictionary<string, string>();
         public Config()
         {
-            RegistryKey rk = Registry.CurrentUser.CreateSubKey(SubKey);
+            RegistryKey rk = Registry.LocalMachine.CreateSubKey(SubKey);
             string[] list = rk.GetValueNames();
             foreach (string temp in list)
             {
@@ -25,7 +25,7 @@ namespace ChromeCacheManager
         }
         public void Save()
         {
-            RegistryKey rk = Registry.CurrentUser.CreateSubKey(SubKey);
+            RegistryKey rk = Registry.LocalMachine.CreateSubKey(SubKey);
             foreach (string i in Values.Keys)
             {
                 rk.SetValue(i, Values[i]);

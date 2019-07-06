@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using System.Windows.Forms;
-using ChromeCacheManager.SchedulerModule;
 namespace ChromeCacheManager
 {
     public static class CacheManagement
@@ -13,9 +11,8 @@ namespace ChromeCacheManager
 
         public static bool TempFileSystem = true;
 
-        private static string LocalFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+        private static string LocalFolder = null;
         private static string RamDiskFolder = null;
-        public static Scheduler Scheduler = new ChromeCacheManager.SchedulerModule.TaskScheduler();
         private static void StartTemp(string ori)
         {
             string temp = ori.Replace(LocalFolder, "LocalFolder");
@@ -31,7 +28,10 @@ namespace ChromeCacheManager
         }
         public static string[] FindChromeFolder()
         {
-             List<string> ChromeFolder = new List<string>();
+            LocalFolder = new Config().Values["LocalFolder"];
+            RamDiskFolder = new Config().Values["path"];
+
+            List<string> ChromeFolder = new List<string>();
              string[] temp;
 
             temp = Directory.GetDirectories(LocalFolder + @"\Google\Chrome\User Data", "*Cache*", SearchOption.AllDirectories);
@@ -47,16 +47,22 @@ namespace ChromeCacheManager
         }
         public static void Start()
         {
+            LocalFolder = new Config().Values["LocalFolder"];
             RamDiskFolder = new Config().Values["path"];
             if (RamDiskFolder == null)
             {
-                MessageBox.Show("Select Ramdisk Temporary Folder", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                throw new Exception("Error");
             }
             foreach (string path in FindChromeFolder())
             {
                 StartTemp(path);
             }
+        }
+        public static void InitialSetting()
+        {
+            Config config = new Config();
+            config.Values["LocalFolder"] = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            config.Save();
         }
     }
 }
