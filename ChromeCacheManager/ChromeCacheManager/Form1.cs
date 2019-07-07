@@ -7,14 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ChromeCacheManager.SchedulerModule;
+using CacheManagementModule;
 
 namespace ChromeCacheManager
 {
     public partial class Form1 : Form
     {
+        public static Scheduler Scheduler = new ChromeCacheManager.SchedulerModule.WinServiceScheduler();
         public Form1()
         {
             InitializeComponent();
+
             foreach (string path in CacheManagement.FindChromeFolder())
             {
                 listView1.Items.Add(path);
@@ -32,10 +36,9 @@ namespace ChromeCacheManager
             dialog.ShowDialog();
             if (!string.IsNullOrEmpty(dialog.SelectedPath))
             {
-                Config config = new Config();
-                config.Values["path"] = dialog.SelectedPath + @"\";
-                config.Save();
-                textBox1.Text = config.Values["path"];
+                string path = dialog.SelectedPath + @"\";
+                CacheManagement.InitialSetting(path);
+                textBox1.Text = path;
             }
         }
 
@@ -47,11 +50,11 @@ namespace ChromeCacheManager
                 "But the temporary folder will be deleted when you restart.\n" +
                 "So, we recommend scheduler registration that works automatically at system startup.\n\n" +
                 "Would you like to register?";
-            if (CacheManagement.Registered == false)
+            if (Scheduler.isRegistered == false)
             {
                 if (MessageBox.Show(message, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
-                    CacheManagement.AddScheduler();
+                    Scheduler.Register();
                     StateUpdate();
                 }
             }
@@ -69,18 +72,18 @@ namespace ChromeCacheManager
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            CacheManagement.AddScheduler();
+            Scheduler.Register();
             StateUpdate();
         }
         private void Button3_Click(object sender, EventArgs e)
         {
-            CacheManagement.RemoveScheduler();
+            Scheduler.Deregister();
             StateUpdate();
         }
         public void StateUpdate()
         {
             string text = null;
-            if (CacheManagement.Registered)
+            if (Scheduler.isRegistered)
             {
                 text = "Registered";
                 button2.Enabled = false;
